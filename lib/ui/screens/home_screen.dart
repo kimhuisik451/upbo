@@ -6,6 +6,7 @@ import '../../data/repositories/dashboard_repository.dart';
 import '../../data/repositories/debt_repository.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../theme/app_colors.dart';
+import '../widgets/responsive_wrapper.dart';
 import 'add_debt_screen.dart';
 import 'debt_detail_screen.dart';
 import 'transaction_list_screen.dart';
@@ -94,20 +95,22 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 전체 요약 카드
-            _buildSummaryCard(),
-            const SizedBox(height: 16),
-            // 탭 선택
-            _buildTabSelector(),
-            const SizedBox(height: 20),
-            // 최근 거래 내역
-            _buildRecentTransactions(),
-          ],
+      body: ResponsiveWrapper(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 전체 요약 카드
+              _buildSummaryCard(),
+              const SizedBox(height: 16),
+              // 탭 선택
+              _buildTabSelector(),
+              const SizedBox(height: 20),
+              // 최근 거래 내역
+              _buildRecentTransactions(),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

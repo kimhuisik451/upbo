@@ -4,6 +4,7 @@ import '../../data/models/profile_model.dart';
 import '../../data/repositories/debt_repository.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../theme/app_colors.dart';
+import '../widgets/responsive_wrapper.dart';
 import 'debt_detail_screen.dart';
 
 class TransactionListScreen extends StatefulWidget {
@@ -177,36 +178,38 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
           ),
         ],
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _debts.isEmpty
-              ? const Center(
-                  child: Text(
-                    '거래 내역이 없습니다',
-                    style: TextStyle(color: AppColors.textSecondary),
-                  ),
-                )
-              : RefreshIndicator(
-                  onRefresh: _loadData,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: _debts.length,
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () async {
-                        final result = await Navigator.push<bool>(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => DebtDetailScreen(debtId: _debts[index].id),
-                          ),
-                        );
-                        if (result == true) {
-                          _loadData();
-                        }
-                      },
-                      child: _buildTransactionItem(_debts[index]),
+      body: ResponsiveWrapper(
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : _debts.isEmpty
+                ? const Center(
+                    child: Text(
+                      '거래 내역이 없습니다',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
+                  )
+                : RefreshIndicator(
+                    onRefresh: _loadData,
+                    child: ListView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: _debts.length,
+                      itemBuilder: (context, index) => GestureDetector(
+                        onTap: () async {
+                          final result = await Navigator.push<bool>(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DebtDetailScreen(debtId: _debts[index].id),
+                            ),
+                          );
+                          if (result == true) {
+                            _loadData();
+                          }
+                        },
+                        child: _buildTransactionItem(_debts[index]),
+                      ),
                     ),
                   ),
-                ),
+      ),
     );
   }
 

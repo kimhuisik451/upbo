@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../data/models/profile_model.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../theme/app_colors.dart';
+import '../widgets/responsive_wrapper.dart';
 import 'add_profile_screen.dart';
 import 'profile_detail_screen.dart';
 
@@ -74,7 +75,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
           ),
         ],
       ),
-      body: _buildBody(),
+      body: ResponsiveWrapper(child: _buildBody()),
     );
   }
 

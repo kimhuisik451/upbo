@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../theme/app_colors.dart';
+import '../widgets/responsive_wrapper.dart';
 import 'login_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -23,10 +24,11 @@ class SettingsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Consumer<AuthProvider>(
-        builder: (context, auth, _) {
-          final user = auth.user;
-          return SingleChildScrollView(
+      body: ResponsiveWrapper(
+        child: Consumer<AuthProvider>(
+          builder: (context, auth, _) {
+            final user = auth.user;
+            return SingleChildScrollView(
             child: Column(
               children: [
                 const SizedBox(height: 16),
@@ -126,6 +128,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           );
         },
+        ),
       ),
     );
   }
