@@ -4,6 +4,7 @@ import '../../data/models/repayment_model.dart';
 import '../../data/repositories/debt_repository.dart';
 import '../../data/repositories/repayment_repository.dart';
 import '../theme/app_colors.dart';
+import '../widgets/responsive_wrapper.dart';
 import 'add_repayment_screen.dart';
 
 class DebtDetailScreen extends StatefulWidget {
@@ -243,23 +244,25 @@ class _DebtDetailScreenState extends State<DebtDetailScreen> {
           ),
         ],
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _debt == null
-              ? const Center(child: Text('데이터를 불러올 수 없습니다'))
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _buildHeader(),
-                      const SizedBox(height: 16),
-                      _buildDetailSection(),
-                      if (_repayments.isNotEmpty) ...[
+      body: ResponsiveWrapper(
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : _debt == null
+                ? const Center(child: Text('데이터를 불러올 수 없습니다'))
+                : SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _buildHeader(),
                         const SizedBox(height: 16),
-                        _buildRepaymentSection(),
+                        _buildDetailSection(),
+                        if (_repayments.isNotEmpty) ...[
+                          const SizedBox(height: 16),
+                          _buildRepaymentSection(),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
-                ),
+      ),
     );
   }
 

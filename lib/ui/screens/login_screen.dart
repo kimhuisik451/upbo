@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
+import '../widgets/responsive_wrapper.dart';
 import 'register_screen.dart';
 import 'main_screen.dart';
 
@@ -50,10 +51,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Form(
+        child: ResponsiveWrapper(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
+              child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -224,6 +226,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
+          ),
       ),
     );
   }

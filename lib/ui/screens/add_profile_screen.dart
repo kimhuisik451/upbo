@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../theme/app_colors.dart';
+import '../widgets/responsive_wrapper.dart';
 
 class AddProfileScreen extends StatefulWidget {
   const AddProfileScreen({super.key});
@@ -81,9 +82,10 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Form(
+      body: ResponsiveWrapper(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -226,6 +228,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
             ],
           ),
         ),
+          ),
       ),
     );
   }

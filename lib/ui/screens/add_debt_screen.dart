@@ -4,6 +4,7 @@ import '../../data/models/profile_model.dart';
 import '../../data/repositories/debt_repository.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../theme/app_colors.dart';
+import '../widgets/responsive_wrapper.dart';
 
 class AddDebtScreen extends StatefulWidget {
   const AddDebtScreen({super.key});
@@ -211,9 +212,10 @@ class _AddDebtScreenState extends State<AddDebtScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Column(
+      body: ResponsiveWrapper(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // 금액 입력
@@ -406,6 +408,7 @@ class _AddDebtScreenState extends State<AddDebtScreen> {
             ),
           ],
         ),
+          ),
       ),
     );
   }

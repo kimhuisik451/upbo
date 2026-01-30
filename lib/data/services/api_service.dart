@@ -23,9 +23,13 @@ class ApiService {
         if (token != null && token.isNotEmpty) {
           options.headers['Authorization'] = 'Bearer $token';
         }
-        // 디버그용 로그
+        // 디버그용 로그 (토큰은 보안상 마스킹)
         print('🔹 Request: ${options.method} ${options.path}');
-        print('🔹 Headers: ${options.headers}');
+        final safeHeaders = Map<String, dynamic>.from(options.headers);
+        if (safeHeaders.containsKey('Authorization')) {
+          safeHeaders['Authorization'] = 'Bearer ***';
+        }
+        print('🔹 Headers: $safeHeaders');
         return handler.next(options);
       },
       onResponse: (response, handler) {
