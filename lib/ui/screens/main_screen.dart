@@ -25,8 +25,16 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
-      bottomNavigationBar: Container(
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: _screens[_currentIndex],
+        ),
+      ),
+      bottomNavigationBar: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,
           boxShadow: [
@@ -49,6 +57,8 @@ class _MainScreenState extends State<MainScreen> {
                 _buildNavItem(3, Icons.settings_outlined, Icons.settings, '설정'),
               ],
             ),
+          ),
+        ),
           ),
         ),
       ),
